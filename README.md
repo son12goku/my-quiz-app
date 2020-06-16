@@ -1,7 +1,4 @@
-
-JAVA FILE
-
-
+java file
 package com.example.android.quiz;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.RadioButton;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
@@ -21,119 +17,101 @@ public class MainActivity extends AppCompatActivity {
     }
     // to print result
 
-    public void printresult(View view){
-        String printmessage = answer(view);
-        TextView priceTextView = (TextView) findViewById(R.id.result);
-        priceTextView.setText(printmessage);
-    }
     //to make sting of final  answer
 
-    private String answer(View view){
+    public void answer(View view){
 
-        String messageprint;
+        String message;
         // to get value of 1st question
 
         EditText answer1Feild = (EditText) findViewById(R.id.answer_one);
         String answer1 = answer1Feild.getText().toString();
 
-        messageprint = checkAnswer1(answer1);
+        message = checkAnswer1(answer1);
         // to get answer of 2nd question
 
-        messageprint += onClicked2(view);
+
+        EditText answer2Feild = (EditText) findViewById(R.id.answer_two);
+        String answer2 = answer2Feild.getText().toString();
+
+        message += checkAnswer2(answer2);
 
         // to get value of 3rd question
 
         EditText answer3Feild = (EditText) findViewById(R.id.answer_three);
         String answer3 = answer3Feild.getText().toString();
 
-        messageprint += checkAnswer3(answer3);
+        message += checkAnswer3(answer3);
+
         // to get answer of 4th question
 
-        messageprint += onClicked4(view);
+        EditText answer4Feild = (EditText) findViewById(R.id.answer_four);
+        String answer4 = answer4Feild.getText().toString();
+
+        message = checkAnswer4(answer4);
 
         // to get value of 5th question
 
         EditText answer5Feild = (EditText) findViewById(R.id.answer_five);
         String answer5 = answer5Feild.getText().toString();
 
-        messageprint += checkAnswer5(answer5);
+        message += checkAnswer5(answer5);
 
-        return messageprint ;
+        TextView priceTextView = (TextView) findViewById(R.id.result);
+        priceTextView.setText(message );
     }
-    //for check 2nd answer
-
-    public String onClicked2(View view) {
-        // Is the button now checked?
-        boolean checked = ((RadioButton) view).isChecked();
-
-        // to return message
-        String message = null;
-
-        // Check which radio button was clicked
-        switch(view.getId()) {
-            case R.id.two_right_answer:
-                if (checked)
-                    message = "\n Your 2nd answer is right ";
-                break;
-            default:
-                message = "\n Your 2nd answer is wrong ";
-                break;
-        }
-            return message ;
-    }
-
-    //for check 4th answer
-
-    public String onClicked4(View view) {
-        // Is the button now checked?
-        boolean checked = ((RadioButton) view).isChecked();
-
-        // to return message
-        String message =null ;
-
-        // Check which radio button was clicked
-        switch(view.getId()) {
-            case R.id.four_right_answer:
-                if (checked)
-                    message = "\n Your 4th answer is right ";
-                break;
-            default:
-                message = "\n Your 2nd answer is wrong ";
-                break;
-        }
-    return message;
-    }
-    
 
     // to 1st check answer
     private String checkAnswer1(String answer){
-        String message = null;
-        if (answer == "100"){
-            message += "\n Your 1st question is right";
+        String message ;
+        if (answer.equals("100")){
+            message = "\n Your 1st question is right";
         } else{
-            message += "\n Your 1st question is wrong";
+            message = "\n Your 1st question is wrong";
+        }
+        return message ;
+    }
+
+    // to 2st check answer
+    private String checkAnswer2(String answer){
+        String message ;
+        if (answer.equals("To change player's name")){
+            message = "\n Your 2nd question is right";
+        } else{
+            message = "\n Your 2nd question is wrong";
         }
         return message ;
     }
 
     // to 3rd check answer
     private String checkAnswer3(String answer) {
-        String message = null;
-        if (answer == "ACE") {
-            message += "\n Your 3rd question is right";
+        String message ;
+        if (answer.equals("ACE")) {
+            message = "\n Your 3rd question is right";
         } else {
-            message += "\n Your 3rd question is wrong";
+            message = "\n Your 3rd question is wrong";
         }
         return message;
     }
 
+    // to 14th check answer
+    private String checkAnswer4(String answer) {
+        String message;
+        if (answer.equals("CONQUEROR")) {
+            message = "\n Your 4th question is right";
+        } else {
+            message = "\n Your 4th question is wrong";
+        }
+        return message;
+    }
+    
     // to 5th check answer
     private String checkAnswer5(String answer) {
-        String message = null;
-        if (answer == "13") {
-            message += "\n Your 5th question is right";
+        String message ;
+        if (answer.equals("13")) {
+            message = "\n Your 5th question is right";
         } else {
-            message += "\n Your 5th question is wrong";
+            message = "\n Your 5th question is wrong";
         }
         return message;
     }
@@ -171,47 +149,15 @@ xml file
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Q.2. What is use of Rename card?"
+            android:text="Q.2. For What changes the Rename card used ?"
             android:padding="8dp"
             android:textSize="20dp"/>
-
-        <RadioGroup
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-        <RadioButton
-            android:layout_width="wrap_content"
+        <EditText
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="To change the character "
-            android:id="@+id/two_wrong_answer_2"
-            android:paddingLeft="8dp"
-            android:textSize="16dp"/>
-
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="To change the name of player's clan"
-            android:paddingLeft="8dp"
-            android:id="@+id/two_wrong_answer_1"
-            android:textSize="16dp"/>
-
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="To change the name of player's name"
-            android:paddingLeft="8dp"
-            android:id="@+id/two_right_answer"
-            android:textSize="16dp"/>
-
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="To change the player's profile picutre"
-            android:paddingLeft="8dp"
-            android:id="@+id/two_wrong_answer_3"
-            android:textSize="16dp"/>
-
-        </RadioGroup>
+            android:hint="Answer"
+            android:id="@+id/answer_two"
+            android:padding="8dp"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -230,47 +176,16 @@ xml file
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Q.4. Which is the highest Tire in PUBG Mobile"
+            android:text="Q.4. Which is the highest Tire in PUBG Mobile ? (In capital)"
             android:padding="8dp"
             android:textSize="20dp"/>
 
-        <RadioGroup
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-        <RadioButton
-            android:layout_width="wrap_content"
+        <EditText
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="ACE"
-            android:id="@+id/four_wrong_answer_1"
-            android:paddingLeft="8dp"
-            android:textSize="16dp"/>
-
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="DIAMOND"
-            android:paddingLeft="8dp"
-            android:id="@+id/four_wrong_answer_2"
-            android:textSize="16dp"/>
-
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="CONQUEROR"
-            android:id="@+id/four_right_answer"
-            android:paddingLeft="8dp"
-            android:textSize="16dp"/>
-
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="CROWN"
-            android:paddingLeft="8dp"
-            android:id="@+id/four_wrong_answer_3"
-            android:textSize="16dp"/>
-
-        </RadioGroup>
+            android:hint="Answer"
+            android:id="@+id/answer_four"
+            android:padding="8dp"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -291,7 +206,7 @@ xml file
             android:layout_height="wrap_content"
             android:text="Submit"
             android:padding="8dp"
-            android:onClick="printresult"
+            android:onClick="answer"
             android:layout_gravity="center"
             android:textSize="18dp"/>
 
@@ -306,7 +221,7 @@ xml file
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Please Submit Your Answer"
+            android:text="Please Submit Your Answers first"
             android:layout_gravity="center"
             android:id="@+id/result"
             android:padding="8dp"
@@ -314,4 +229,3 @@ xml file
 
     </LinearLayout>
 </ScrollView>
-
